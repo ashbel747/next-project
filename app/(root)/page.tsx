@@ -1,22 +1,14 @@
+import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 import SearchForm from "../components/SearchForm";
-import StartupCard from "../components/StartupCard";
+import StartupCard, { StartupCardType } from "../components/StartupCard";
+import { client } from "@/sanity/lib/client";
 
 export default async function Home({ searchParams }: {
   searchParams: Promise<{query?: string}>
 }) {
   const query = (await searchParams).query;
 
-  const posts = [{
-    _createdAt: 'Yesterday',
-    views: 55,
-    author: { _id:1, name: 'Ashbel' },
-    _id: 1,
-    description: "This is a description",
-    image: "https://th.bing.com/th/id/R.29ca60c0a4eb7227b6588190a3857ca4?rik=xCcSE2Ac4OTbGw&pid=ImgRaw&r=0",
-    category: "Robots",
-    title: "We Robots"
-  },
-];
+  const posts = await client.fetch(STARTUPS_QUERY);
 
   return (
     <>

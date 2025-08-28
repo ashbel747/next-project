@@ -6,7 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "predev": "npm run typegen",
+    "prebuild": "npm run typegen",
+    "typegen": "sanity schema extract --path=./sanity/extract.json && sanity typegen generate"
   },
   "packageManager": "npm@10.9.3",
   "overrides": {
@@ -14,7 +17,8 @@
     "react-dom": "$react-dom"
   },
   "dependencies": {
-    "@sanity/image-url": "^1.1.0",
+    "@sanity/client": "^7.10.0",
+    "@sanity/image-url": "^1.2.0",
     "@sanity/vision": "^4.6.0",
     "@tailwindcss/typography": "^0.5.16",
     "class-variance-authority": "^0.7.1",
